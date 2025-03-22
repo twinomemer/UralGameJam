@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Character streamer;
+    [SerializeField] private Streamer streamer;
     [SerializeField] private Character watcher;
     
     [SerializeField] private float blessingDamage;
+
+    private StreamerData streamerData;
     void Start()
     {
         
@@ -15,18 +17,23 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void StartBattle()
+    {
+        streamer.Initialize(streamerData);
+    }
     
-    private void BlessingCompare(Character _streamer, Character _watcher)
+    private void BlessingCompare()
     {
         //Если наш бог сильнее бога  оппонента, наносим урон со старта.
-        if ((_streamer.healthType - _watcher.healthType) == -1 || (_streamer.healthType - _watcher.healthType) == 2)
+        if ((streamer.healthType - watcher.healthType) == -1 || (streamer.healthType - watcher.healthType) == 2)
         {
-            _watcher.TakeDamage(blessingDamage);
+            watcher.TakeDamage(blessingDamage);
         }
         //Если слабее, получаем.
-        else if ((_streamer.healthType - _watcher.healthType) == 1 || (_streamer.healthType - _watcher.healthType) == -2)
+        else if ((streamer.healthType - watcher.healthType) == 1 || (streamer.healthType - watcher.healthType) == -2)
         {
-            _streamer.TakeDamage(blessingDamage);
+            streamer.TakeDamage(blessingDamage);
         }
         //Если типы одинаковы, то ничего не происходит.
         else

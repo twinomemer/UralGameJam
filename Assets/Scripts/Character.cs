@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Character : MonoBehaviour
 {
@@ -15,9 +16,20 @@ public abstract class Character : MonoBehaviour
     //Коэффициент, который отвечает за увеличение/снижение параметров при сопоставлении их типов.
     protected float effCoeff = 0.2f;
     
+    public event UnityAction<float> OnDamaged;
+    public event UnityAction OnDead;
+    
     public void TakeDamage(float _damage)
     {
+        if (_damage >= health)
+        {
+            health = 0;
+            OnDamaged?.Invoke(_damage);
+            OnDead?.Invoke();
+            return;
+        }
         health -= _damage;
+        OnDamaged?.Invoke(_damage);
     }
     
     public void Attack(Character target)

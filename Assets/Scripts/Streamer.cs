@@ -1,19 +1,28 @@
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Streamer : Character
 {
-    //Параметры бойца.
-    [SerializeField] private float health;
-    [SerializeField] private float armor;
-    [SerializeField] private float damage;
-    
-    [SerializeField] private int healthType;
-    [SerializeField] private int armorType;
-    [SerializeField] private int damageType;
+    [SerializeField] private Image image;
     
     [SerializeField] private Character enemy;
-
     
+    private HealthBar _healthBar;
+
+    public void Initialize(StreamerData streamerData)
+    {
+        health = streamerData.Health;
+        armor = streamerData.Armor;
+        damage = streamerData.Damage;
+        healthType = streamerData.HealthType;
+        armorType = streamerData.ArmorType;
+        damageType = streamerData.DamageType;
+        image.sprite = streamerData.Sprite;
+        
+        this.OnDamaged += _healthBar.DecreaseValue;
+        this.OnDead += _healthBar.Hide;
+    }
     
     void Start()
     {
