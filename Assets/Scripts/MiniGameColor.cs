@@ -123,10 +123,12 @@ public class MiniGameColor : MonoBehaviour
             if (clickedButtonText.color == rectangle.color)
             {
                 Debug.Log("Правильно! (по цвету текста)");
+                WimMiniGameColor.SetActive(false);
             }
             else
             {
                 Debug.Log("Неправильно!");
+                WimMiniGameColor.SetActive(false);
             }
         }
         else
@@ -135,10 +137,12 @@ public class MiniGameColor : MonoBehaviour
             if (clickedButtonText.text == GetColorName(rectangle.color))
             {
                 Debug.Log("Правильно! (по названию цвета)");
+                WimMiniGameColor.SetActive(false);
             }
             else
             {
                 Debug.Log("Неправильно!");
+                WimMiniGameColor.SetActive(false);
             }
         }
     }
