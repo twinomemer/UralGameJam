@@ -8,7 +8,7 @@ public class Streamer : Character
     
     [SerializeField] private Character enemy;
     
-    private HealthBar _healthBar;
+    [SerializeField] private HealthBar _healthBar;
 
     public void Initialize(StreamerData streamerData)
     {
@@ -18,7 +18,9 @@ public class Streamer : Character
         healthType = streamerData.HealthType;
         armorType = streamerData.ArmorType;
         damageType = streamerData.DamageType;
-        image.sprite = streamerData.Sprite;
+        
+        _healthBar.SetMaxValue(health);
+        _healthBar.Show();
         
         this.OnDamaged += _healthBar.DecreaseValue;
         this.OnDead += _healthBar.Hide;

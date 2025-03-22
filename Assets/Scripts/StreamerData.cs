@@ -2,16 +2,14 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class StreamerData
+public class StreamerData : MonoBehaviour
 {
     //Параметры стримера.
-    public float Health;
-    public float Armor;
-    public float Damage;
+    public float Health = 100f;
+    public float Armor = 25f;
+    public float Damage = 10f;
     
-    public  int HealthType;
-    public int ArmorType;
-    public int DamageType;
-
-    public Sprite Sprite;
+    public int HealthType = 1;
+    public int ArmorType = 1;
+    public int DamageType = 1;
 }

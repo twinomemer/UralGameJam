@@ -1,16 +1,20 @@
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Streamer streamer;
-    [SerializeField] private Character watcher;
-    
     [SerializeField] private float blessingDamage;
-
-    private StreamerData streamerData;
+    [SerializeField] private float attackInterval;
+    
+    [SerializeField] private Streamer streamer;
+    [SerializeField] private Watcher watcher;
+    [SerializeField] private StreamerData streamerData;
+    [SerializeField] private WatcherData watcherData;
+    
+    private bool isAnybodyDead = false;
     void Start()
     {
-        
+        StartBattle();
     }
     
     void Update()
@@ -21,6 +25,31 @@ public class GameManager : MonoBehaviour
     public void StartBattle()
     {
         streamer.Initialize(streamerData);
+        streamer.OnDead += KillSomeone;
+        
+        watcher.Initialize(watcherData);
+        watcher.OnDead += KillSomeone;
+        StartCoroutine(Fighting());
+        
+        BlessingCompare();
+    }
+    
+    IEnumerator Fighting()
+    {
+        // Пока событие не произошло, выполняем метод
+        while (!isAnybodyDead)
+        {
+            streamer.Attack(watcher);
+            watcher.Attack(streamer);
+            yield return new WaitForSeconds(attackInterval);
+        }
+
+        Debug.Log("Событие произошло, корутина остановлена.");
+    }
+
+    private void KillSomeone()
+    {
+        isAnybodyDead = true;
     }
     
     private void BlessingCompare()

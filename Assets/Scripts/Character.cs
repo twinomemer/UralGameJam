@@ -30,6 +30,7 @@ public abstract class Character : MonoBehaviour
         }
         health -= _damage;
         OnDamaged?.Invoke(_damage);
+        Debug.Log(_damage);
     }
     
     public void Attack(Character target)
@@ -37,17 +38,17 @@ public abstract class Character : MonoBehaviour
         //Если наш тип атаки сильнее типа брони оппонента, наносим доп урон.
         if ((this.damageType - target.armorType) == -1 || (this.damageType - target.armorType) == 2)
         {
-            target.TakeDamage(damage * (1 + effCoeff) * (1 - target.armor));
+            target.TakeDamage(damage * (1 + effCoeff) * (1 - target.armor / 100));
         }
         //Если слабее, наносим сниженный урон.
         else if ((this.damageType - target.armorType) == 1 || (this.damageType - target.armorType) == -2)
         {
-            target.TakeDamage(damage * (1 - effCoeff) * (1 - target.armor));
+            target.TakeDamage(damage * (1 - effCoeff) * (1 - target.armor / 100));
         }
         //Если типы одинаковы, урон не меняется.
         else
         {
-            target.TakeDamage(damage * (1 - target.armor));
+            target.TakeDamage(damage * (1 - target.armor / 100));
         }
     }
 }
