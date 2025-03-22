@@ -25,14 +25,17 @@ public class MiniGameColor : MonoBehaviour
     private int answerIndex;
     private bool isCorrectByColor;
     private List<Color> usedColors = new List<Color>();
+    private bool isColorGameActive = false;
 
 
     void Start()
     {
         WimMiniGameColor.SetActive(true);
         Generatecolor();
+        isColorGameActive = true;
     }
-    
+  
+
 
     void Generatecolor()
     {
