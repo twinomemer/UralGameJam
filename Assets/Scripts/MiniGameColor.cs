@@ -25,6 +25,7 @@ public class MiniGameColor : MonoBehaviour
     private int answerIndex;
     private bool isCorrectByColor;
     private List<Color> usedColors = new List<Color>();
+    private List<string> usedTextsInRound = new List<string>();
 
 
     void Start()
@@ -37,6 +38,8 @@ public class MiniGameColor : MonoBehaviour
     void Generatecolor()
     {
         usedColors.Clear();
+        usedTextsInRound.Clear();
+
         Color randomColorForRect = GetUniqueColor(); //Выбираем рандомно цвет из массива цветов
         answerIndex = Random.Range(0, buttons.Length); //Выбираем рандомно кнопку на экране, которая будет окрашена в тот же цвет, что и 
         isCorrectByColor = Random.value > 0.5f;
@@ -69,7 +72,7 @@ public class MiniGameColor : MonoBehaviour
                 if (buttonText != null)
                 {
                     Color wrongColor = GetUniqueColor(randomColorForRect);
-                    buttonText.text = GetRandomWrongName(randomColorForRect);
+                    buttonText.text = GetUniqueText(wrongColor);
                     buttonText.color = wrongColor;
 
                 }
@@ -92,22 +95,24 @@ public class MiniGameColor : MonoBehaviour
         usedColors.Add(uniqueColor); // Добавляем цвет в список использованных
         return uniqueColor;
     }
-
-    Color GetRandomWrongColor(Color excludeColor)
+    string GetUniqueText(Color excludeColor)
     {
-        Color wrongColor;
+        string uniqueText;
         do
         {
-            wrongColor = colors[Random.Range(0, colors.Length)];
-        } while (wrongColor == excludeColor);
-        return wrongColor;
+            uniqueText = GetRandomWrongName(excludeColor);
+        } while (usedTextsInRound.Contains(uniqueText));
+
+        usedTextsInRound.Add(uniqueText); // Добавляем текст в список использованных
+        return uniqueText;
     }
 
     string GetRandomWrongName(Color excludeColor)
     {
-        Color wrongColor = GetRandomWrongColor(excludeColor);
+        Color wrongColor = GetUniqueColor(excludeColor);
         return GetColorName(wrongColor);
     }
+
     string GetColorName(Color color)
     {
         return colorNames.ContainsKey(color) ? colorNames[color] : "неизвестный";
@@ -123,10 +128,13 @@ public class MiniGameColor : MonoBehaviour
             if (clickedButtonText.color == rectangle.color)
             {
                 Debug.Log("Правильно! (по цвету текста)");
+                //Логика вызова функции с применением скилла
             }
             else
             {
                 Debug.Log("Неправильно!");
+                //не применяем скилл 
+                //Логика вызова наказания
             }
         }
         else
@@ -135,10 +143,13 @@ public class MiniGameColor : MonoBehaviour
             if (clickedButtonText.text == GetColorName(rectangle.color))
             {
                 Debug.Log("Правильно! (по названию цвета)");
+                // Логика вызова функции с применением скилла
             }
             else
             {
                 Debug.Log("Неправильно!");
+                //не применяем скилл 
+                //Логика вызова наказания
             }
         }
     }
