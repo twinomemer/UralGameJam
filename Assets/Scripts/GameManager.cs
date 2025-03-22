@@ -4,16 +4,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private float blessingDamage;
+    [SerializeField] private float spellDamage;
     [SerializeField] private float attackInterval;
     
     [SerializeField] private Streamer streamer;
     [SerializeField] private Watcher watcher;
     [SerializeField] private StreamerData streamerData;
     [SerializeField] private WatcherData watcherData;
+    [SerializeField] private QTESystem qte;
+    [SerializeField] private MiniGameColor mgc;
     
     private bool isAnybodyDead = false;
     void Start()
     {
+        mgc.colorGuessed += () => watcher.TakeDamage(spellDamage);
+        qte.QTECompleted += () => watcher.TakeDamage(spellDamage);
         StartBattle();
     }
     

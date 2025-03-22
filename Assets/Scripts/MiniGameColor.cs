@@ -1,56 +1,67 @@
-using System.Linq;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Globalization;
-using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class MiniGameColor : MonoBehaviour
 {
     public Image rectangle;
     public GameObject WimMiniGameColor;
     public Button[] buttons = new Button[3];
-    
-    private Color[] colors = new Color[] { Color.red, Color.green, Color.blue, Color.gray, Color.black, Color.yellow, Color.green};
+
+    private Color[] colors = new Color[]
+    {
+        Color.red, Color.green, Color.blue, Color.gray, Color.black, Color.yellow
+    };
+
     private Dictionary<Color, string> colorNames = new Dictionary<Color, string>()
     {
-        { Color.red, "красный" },
-        { Color.green, "зелёный" },
-        { Color.blue, "синий" },
-        { Color.gray, "серый" },
-        { Color.black, "чёрный" },
-        { Color.yellow, "жёлтый" }
+        { Color.red, "РєСЂР°СЃРЅС‹Р№" },
+        { Color.green, "Р·РµР»С‘РЅС‹Р№" },
+        { Color.blue, "СЃРёРЅРёР№" },
+        { Color.gray, "СЃРµСЂС‹Р№" },
+        { Color.black, "С‡С‘СЂРЅС‹Р№" },
+        { Color.yellow, "Р¶С‘Р»С‚С‹Р№" }
     };
+
     private int answerIndex;
     private bool isCorrectByColor;
     private List<Color> usedColors = new List<Color>();
+    private bool isColorGameActive = false;
 
-
+    public event UnityAction colorGuessed;
+    
     void Start()
+    {
+        // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РёРіСЂС‹ РїСЂРё СЃС‚Р°СЂС‚Рµ
+        RestartGame();
+    }
+
+    // РњРµС‚РѕРґ РґР»СЏ РїРµСЂРµР·Р°РїСѓСЃРєР° РёРіСЂС‹
+    public void RestartGame()
     {
         WimMiniGameColor.SetActive(true);
         Generatecolor();
+        isColorGameActive = true;
     }
-    
-
     void Generatecolor()
     {
-        usedColors.Clear();
-        Color randomColorForRect = GetUniqueColor(); //Выбираем рандомно цвет из массива цветов
-        answerIndex = Random.Range(0, buttons.Length); //Выбираем рандомно кнопку на экране, которая будет окрашена в тот же цвет, что и 
-        isCorrectByColor = Random.value > 0.5f;
+        usedColors.Clear(); // РћС‡РёС‰Р°РµРј СЃРїРёСЃРѕРє РёСЃРїРѕР»СЊР·РѕРІР°РЅРЅС‹С… С†РІРµС‚РѕРІ
+
+        Color randomColorForRect = GetUniqueColor(); // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅС‹Р№ С†РІРµС‚ РґР»СЏ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
+        answerIndex = Random.Range(0, buttons.Length); // Р’С‹Р±РёСЂР°РµРј СЃР»СѓС‡Р°Р№РЅСѓСЋ РєРЅРѕРїРєСѓ РґР»СЏ РїСЂР°РІРёР»СЊРЅРѕРіРѕ РѕС‚РІРµС‚Р°
+        isCorrectByColor = Random.value > 0.5f; // РЎР»СѓС‡Р°Р№РЅРѕ РІС‹Р±РёСЂР°РµРј, РїСЂРѕРІРµСЂСЏС‚СЊ Р»Рё РїРѕ С†РІРµС‚Сѓ РёР»Рё РїРѕ РЅР°Р·РІР°РЅРёСЋ
 
         if (rectangle != null)
         {
             rectangle.color = randomColorForRect;
         }
-        
-        
-        for (int i=0; i< buttons.Length; i++)
-        {
 
+        for (int i = 0; i < buttons.Length; i++)
+        {
             TMP_Text buttonText = buttons[i].GetComponentInChildren<TMP_Text>();
+
             if (i == answerIndex && buttonText != null)
             {
                 if (isCorrectByColor)
@@ -71,16 +82,16 @@ public class MiniGameColor : MonoBehaviour
                     Color wrongColor = GetUniqueColor(randomColorForRect);
                     buttonText.text = GetRandomWrongName(randomColorForRect);
                     buttonText.color = wrongColor;
-
                 }
             }
 
+            // Р”РѕР±Р°РІР»СЏРµРј РѕР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ
             int buttonIndex = i;
             buttons[i].onClick.RemoveAllListeners();
             buttons[i].onClick.AddListener(() => OnButtonClick(buttonIndex));
-            
         }
     }
+
     Color GetUniqueColor(Color excludeColor = default)
     {
         Color uniqueColor;
@@ -89,7 +100,7 @@ public class MiniGameColor : MonoBehaviour
             uniqueColor = colors[Random.Range(0, colors.Length)];
         } while (uniqueColor == excludeColor || usedColors.Contains(uniqueColor));
 
-        usedColors.Add(uniqueColor); // Добавляем цвет в список использованных
+        usedColors.Add(uniqueColor);
         return uniqueColor;
     }
 
@@ -108,9 +119,10 @@ public class MiniGameColor : MonoBehaviour
         Color wrongColor = GetRandomWrongColor(excludeColor);
         return GetColorName(wrongColor);
     }
+
     string GetColorName(Color color)
     {
-        return colorNames.ContainsKey(color) ? colorNames[color] : "неизвестный";
+        return colorNames.ContainsKey(color) ? colorNames[color] : "РЅРµРёР·РІРµСЃС‚РЅС‹Р№";
     }
 
     void OnButtonClick(int clickedIndex)
@@ -119,27 +131,33 @@ public class MiniGameColor : MonoBehaviour
 
         if (isCorrectByColor)
         {
-            // Проверяем правильность по цвету текста
+            // РџСЂРѕРІРµСЂСЏРµРј РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РїРѕ С†РІРµС‚Сѓ С‚РµРєСЃС‚Р°
             if (clickedButtonText.color == rectangle.color)
             {
-                Debug.Log("Правильно! (по цвету текста)");
+                colorGuessed?.Invoke();
+                Debug.Log("РџСЂР°РІРёР»СЊРЅРѕ! (РїРѕ С†РІРµС‚Сѓ С‚РµРєСЃС‚Р°)");
             }
             else
             {
-                Debug.Log("Неправильно!");
+                Debug.Log("РќРµРїСЂР°РІРёР»СЊРЅРѕ!");
             }
         }
         else
         {
-            // Проверяем правильность по названию цвета
+            // РџСЂРѕРІРµСЂСЏРµРј РїСЂР°РІРёР»СЊРЅРѕСЃС‚СЊ РїРѕ РЅР°Р·РІР°РЅРёСЋ С†РІРµС‚Р°
             if (clickedButtonText.text == GetColorName(rectangle.color))
             {
-                Debug.Log("Правильно! (по названию цвета)");
+                colorGuessed?.Invoke();
+                Debug.Log("РџСЂР°РІРёР»СЊРЅРѕ! (РїРѕ РЅР°Р·РІР°РЅРёСЋ С†РІРµС‚Р°)");
             }
             else
             {
-                Debug.Log("Неправильно!");
+                Debug.Log("РќРµРїСЂР°РІРёР»СЊРЅРѕ!");
             }
         }
+
+        // Р—Р°РІРµСЂС€Р°РµРј РёРіСЂСѓ
+        WimMiniGameColor.SetActive(false);
+
     }
- }
+}
