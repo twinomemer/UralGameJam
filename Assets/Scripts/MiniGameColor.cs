@@ -28,7 +28,6 @@ public class MiniGameColor : MonoBehaviour
     private int answerIndex;
     private bool isCorrectByColor;
     private List<Color> usedColors = new List<Color>();
-    private bool isColorGameActive = false;
 
     public event UnityAction colorGuessed;
     
@@ -43,7 +42,6 @@ public class MiniGameColor : MonoBehaviour
     {
         WimMiniGameColor.SetActive(true);
         Generatecolor();
-        isColorGameActive = true;
     }
     void Generatecolor()
     {

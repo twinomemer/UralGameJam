@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -12,4 +13,6 @@ public class StreamerData : MonoBehaviour
     public int HealthType = 1;
     public int ArmorType = 1;
     public int DamageType = 1;
+
+    public List<int> Spells = new List<int>();
 }

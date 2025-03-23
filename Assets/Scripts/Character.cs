@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,6 +8,7 @@ public abstract class Character : MonoBehaviour
     protected float health;
     protected float armor;
     protected float damage;
+    protected List<int> spells = new List<int>();
     
     //Типы параметров. 1 - камень, 2 - ножницы, 3 - бумага. Остальное - психические отклонения.
     public int healthType;
@@ -14,7 +16,7 @@ public abstract class Character : MonoBehaviour
     public int damageType;
     
     //Коэффициент, который отвечает за увеличение/снижение параметров при сопоставлении их типов.
-    protected float effCoeff = 0.2f;
+    public float effCoeff = 0.2f;
     
     public event UnityAction<float> OnDamaged;
     public event UnityAction OnDead;

@@ -10,11 +10,14 @@ public class Streamer : Character
     
     [SerializeField] private HealthBar _healthBar;
 
+    [SerializeField] private SpellLibrary _spellLibrary;
+    
     public void Initialize(StreamerData streamerData)
     {
         health = streamerData.Health;
         armor = streamerData.Armor;
         damage = streamerData.Damage;
+        spells = streamerData.Spells;
         healthType = streamerData.HealthType;
         armorType = streamerData.ArmorType;
         damageType = streamerData.DamageType;
@@ -24,16 +27,15 @@ public class Streamer : Character
         
         this.OnDamaged += _healthBar.DecreaseValue;
         this.OnDead += _healthBar.Hide;
-    }
-    
-    void Start()
-    {
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        for (int i = 0; i < spells.Count; i++)
+        {
+            switch (spells[i])
+            {
+                case 1:
+                    
+                    break;
+            }
+        }
     }
 }
