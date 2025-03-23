@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2694642427779967876}
   - component: {fileID: 9160850532205210484}
   - component: {fileID: 6573100123531431444}
+  - component: {fileID: 636559634909452344}
   m_Layer: 5
   m_Name: Skill2
   m_TagString: Untagged
@@ -101,7 +102,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -120,7 +121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5466043536901252118}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RandomMiniGame, Assembly-CSharp
         m_MethodName: OnClickSkill
         m_Mode: 1
@@ -132,6 +133,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &636559634909452344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6431327687505627579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef23e63edd7277a4d8f271310250898c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 6573100123531431444}
+  streamer: {fileID: 0}
+  skillNumber: 2
+  MiniGameColorCanvas: {fileID: 0}
+  QTECanvas: {fileID: 0}
 --- !u!1 &6949965571545332268
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +162,7 @@ GameObject:
   - component: {fileID: 4849014654596533628}
   - component: {fileID: 4312914758417762693}
   - component: {fileID: 2314847833948445829}
+  - component: {fileID: 4384342176655594728}
   m_Layer: 5
   m_Name: Skill3
   m_TagString: Untagged
@@ -233,7 +252,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -252,7 +271,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5466043536901252118}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RandomMiniGame, Assembly-CSharp
         m_MethodName: OnClickSkill
         m_Mode: 1
@@ -264,6 +283,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4384342176655594728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6949965571545332268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef23e63edd7277a4d8f271310250898c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 2314847833948445829}
+  streamer: {fileID: 0}
+  skillNumber: 3
+  MiniGameColorCanvas: {fileID: 0}
+  QTECanvas: {fileID: 0}
 --- !u!1 &8461513699958995919
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +312,7 @@ GameObject:
   - component: {fileID: 6944976538753968861}
   - component: {fileID: 5745116112383762168}
   - component: {fileID: 4365893281052532035}
+  - component: {fileID: 6322437743111449805}
   m_Layer: 5
   m_Name: Skill1
   m_TagString: Untagged
@@ -365,7 +402,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -384,7 +421,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5466043536901252118}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RandomMiniGame, Assembly-CSharp
         m_MethodName: OnClickSkill
         m_Mode: 1
@@ -396,6 +433,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6322437743111449805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8461513699958995919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef23e63edd7277a4d8f271310250898c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 4365893281052532035}
+  streamer: {fileID: 0}
+  skillNumber: 1
+  MiniGameColorCanvas: {fileID: 0}
+  QTECanvas: {fileID: 0}
 --- !u!1 &9174578235506970336
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +460,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6473887220397400709}
   - component: {fileID: 2139476762400826591}
-  - component: {fileID: 5466043536901252118}
   m_Layer: 5
   m_Name: Skills
   m_TagString: Untagged
@@ -433,7 +486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -0.0007324219, y: 0.000015258789}
+  m_AnchoredPosition: {x: -0.0007324219, y: 0}
   m_SizeDelta: {x: 287.84, y: 94.05}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2139476762400826591
@@ -462,17 +515,3 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &5466043536901252118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9174578235506970336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a266d0d578d0d614c8b74267f6d1bdcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MiniGameColorCanvas: {fileID: 0}
-  QTECanvas: {fileID: 0}
