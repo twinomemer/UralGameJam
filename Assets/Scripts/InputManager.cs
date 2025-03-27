@@ -201,7 +201,7 @@ public class InputManager : MonoBehaviour
             {
                 if (param.name == "Health")
                 {
-                    if (param.value > 50)
+                    if (param.value > 100)
                     {
                         param.value -= 20;
                         usedPointsSecondPlayer--;
