@@ -12109,6 +12109,7 @@ MonoBehaviour:
   usedPointsSecondPlayer: 0
   firstPlayerPointsText: {fileID: 1895976538}
   secondPlayerPointsText: {fileID: 578210596}
+  canvas: {fileID: 1932380927}
   parametersFirstPlayer:
   - name: Health
     value: 50

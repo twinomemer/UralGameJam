@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
     public int usedPointsSecondPlayer = 0;
     public TMP_Text firstPlayerPointsText;
     public TMP_Text secondPlayerPointsText;
+    public GameObject canvas;
 
     private int health;
     private int armor;
@@ -42,7 +43,7 @@ public class InputManager : MonoBehaviour
     public Parameter[] parametersSecondPlayer;
     private void Start()
     {
-
+      
         foreach (var param in parametersFirstPlayer)
         {
             // ��������� ����������� ������
@@ -382,6 +383,7 @@ public class InputManager : MonoBehaviour
         CreateCharacter(out streamerData, out watcherData);
         streamer.Initialize(streamerData);
         watcher.Initialize(watcherData);
+        canvas.SetActive(false);
     }
 
 }
