@@ -125,7 +125,7 @@ public class InputManager : MonoBehaviour
                     usedPointsSecondPlayer++;
                     UpdateValueText(param);
                 }
-                else
+                else if(param.name == "Damage")
                 {
                     param.value += 10;
                     usedPointsSecondPlayer++;
