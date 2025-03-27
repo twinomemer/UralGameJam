@@ -12,4 +12,5 @@ public class WatcherData : MonoBehaviour
     public int HealthType = 2;
     public int ArmorType = 2;
     public int DamageType = 2;
+
 }
