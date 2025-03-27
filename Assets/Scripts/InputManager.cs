@@ -26,6 +26,9 @@ public class InputManager : MonoBehaviour
         public TMP_Text valueText; // Текстовое поле для отображения значения
         public Button addButton; // Кнопка "+"
         public Button subtractButton; // Кнопка "-"
+        public Button HealthType;
+        public Button ArmorType;
+        public Button DamageType;
     }
 
     public Parameter[] parametersFirstPlayer;
@@ -37,6 +40,9 @@ public class InputManager : MonoBehaviour
             // Назначаем обработчики кнопок
             param.addButton.onClick.AddListener(() => AddPoint(param));
             param.subtractButton.onClick.AddListener(() => SubtractPoint(param));
+           // param.HealthType.onClick.AddListener(() => AddPointType(param));
+            //param.HealthType.onClick.AddListener(() => AddPointType(param));
+           // param.HealthType.onClick.AddListener(() => AddPointType(param));
 
             // Обновляем текстовое поле
             UpdateValueText(param);
