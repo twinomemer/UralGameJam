@@ -116,19 +116,19 @@ public class InputManager : MonoBehaviour
                 if (param.name == "Health")
                 {
                     param.value += 10;
-                    usedPointsFirstPlayer++;
+                    usedPointsSecondPlayer++;
                     UpdateValueText(param);
                 }
                 else if (param.name == "Armor" && param.value < 80)
                 {
                     param.value += 10;
-                    usedPointsFirstPlayer++;
+                    usedPointsSecondPlayer++;
                     UpdateValueText(param);
                 }
                 else
                 {
                     param.value += 10;
-                    usedPointsFirstPlayer++;
+                    usedPointsSecondPlayer++;
                     UpdateValueText(param);
                 }
             }
@@ -196,7 +196,7 @@ public class InputManager : MonoBehaviour
                     if (param.value > 50)
                     {
                         param.value -= 10;
-                        usedPointsFirstPlayer--;
+                        usedPointsSecondPlayer--;
                         UpdateValueText(param);
                     }
                 }
@@ -205,7 +205,7 @@ public class InputManager : MonoBehaviour
                     if (param.value > 10)
                     {
                         param.value -= 10;
-                        usedPointsFirstPlayer--;
+                        usedPointsSecondPlayer--;
                         UpdateValueText(param);
                     }
                 }
@@ -214,7 +214,7 @@ public class InputManager : MonoBehaviour
                     if (param.value > 20)
                     {
                         param.value -= 10;
-                        usedPointsFirstPlayer--;
+                        usedPointsSecondPlayer--;
                         UpdateValueText(param);
                     }
                 }
