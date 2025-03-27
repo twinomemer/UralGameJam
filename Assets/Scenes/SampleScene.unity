@@ -3878,7 +3878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blessingDamage: 10
   spellDamage: 5
-  attackInterval: 1
+  attackInterval: 2
   streamer: {fileID: 283184580}
   watcher: {fileID: 2136992303}
   qte: {fileID: 1631777696}
@@ -12609,7 +12609,7 @@ MonoBehaviour:
   canvas: {fileID: 1932380927}
   parametersFirstPlayer:
   - name: Health
-    value: 50
+    value: 100
     modificator: 1
     valueText: {fileID: 1075888573}
     typeText: {fileID: 1712709931}
