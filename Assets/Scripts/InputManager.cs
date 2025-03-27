@@ -82,22 +82,54 @@ public class InputManager : MonoBehaviour
 
     private void AddPoint(Parameter param)
     {
+
         if (isFirstPlayer)
         {
-            if (usedPointsFirstPlayer < pointsFirstPlayer && param.value <80)
+            if (param.value > 0 && usedPointsFirstPlayer < pointsFirstPlayer)
             {
-                param.value += 10;
-                usedPointsFirstPlayer++;
-                UpdateValueText(param);
+                if (param.name == "Health")
+                {
+                        param.value += 10;
+                        usedPointsFirstPlayer++;
+                        UpdateValueText(param);
+                }
+                else if (param.name == "Armor" && param.value < 80)
+                {
+                        param.value += 10;
+                        usedPointsFirstPlayer++;
+                        UpdateValueText(param);
+                }
+                else if (param.name == "Damage")
+                {
+                        param.value += 10;
+                        usedPointsFirstPlayer++;
+                        UpdateValueText(param);
+                }
+
             }
         }
         else
         {
-            if (usedPointsSecondPlayer < pointsSecondPlayer && param.value < 80)
+            if (param.value > 0 && usedPointsFirstPlayer < pointsFirstPlayer)
             {
-                param.value += 10;
-                usedPointsSecondPlayer++;
-                UpdateValueText(param);
+                if (param.name == "Health")
+                {
+                    param.value += 10;
+                    usedPointsFirstPlayer++;
+                    UpdateValueText(param);
+                }
+                else if (param.name == "Armor" && param.value < 80)
+                {
+                    param.value += 10;
+                    usedPointsFirstPlayer++;
+                    UpdateValueText(param);
+                }
+                else
+                {
+                    param.value += 10;
+                    usedPointsFirstPlayer++;
+                    UpdateValueText(param);
+                }
             }
         }
     }
@@ -217,6 +249,10 @@ public class InputManager : MonoBehaviour
     
     private void SwitchToSecondPlayer()
     {
+        if(usedPointsFirstPlayer < pointsFirstPlayer)
+        {
+            return;
+        }
         // Блокируем кнопки первого игрока
         foreach (var param in parametersFirstPlayer)
         {
@@ -309,6 +345,10 @@ public class InputManager : MonoBehaviour
 
     private void FinishSetup()
     {
+        if (usedPointsSecondPlayer < pointsSecondPlayer)
+        {
+            return;
+        }
         // Блокируем все кнопки после завершения настройки
         foreach (var param in parametersFirstPlayer)
         {
