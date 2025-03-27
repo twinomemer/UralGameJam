@@ -201,6 +201,42 @@ public class InputManager : MonoBehaviour
         readyFirst.interactable = false;
         readySecond.interactable = true;
     }
+    public void CreateCharacter(out StreamerData firstPlayerData, out WatcherData secondPlayerData)
+    {
+        float healthFirst = 0f;
+        float armorFirst = 0f;
+        float damageFirst = 0f;
+
+        foreach (var param in parametersFirstPlayer)
+        {
+            if (param.name == "Health")
+                healthFirst = param.value;
+            else if (param.name == "Armor")
+                armorFirst = param.value;
+            else if (param.name == "Damage")
+                damageFirst = param.value;
+        }
+
+        float healthSecond = 0f;
+        float armorSecond = 0f;
+        float damageSecond = 0f;
+
+        foreach (var param in parametersSecondPlayer)
+        {
+            if (param.name == "Health")
+                healthSecond = param.value;
+            else if (param.name == "Armor")
+                armorSecond = param.value;
+            else if (param.name == "Damage")
+                damageSecond = param.value;
+        }
+
+        firstPlayerData = new StreamerData(healthFirst, armorFirst, damageFirst);
+        secondPlayerData = new WatcherData(healthSecond, armorSecond, damageSecond);
+
+        Debug.Log("Данные первого игрока: Health=" + healthFirst + ", Armor=" + armorFirst + ", Damage=" + damageFirst);
+        Debug.Log("Данные второго игрока: Health=" + healthSecond + ", Armor=" + armorSecond + ", Damage=" + damageSecond);
+    }
 
     private void FinishSetup()
     {
@@ -220,7 +256,10 @@ public class InputManager : MonoBehaviour
         readySecond.interactable = false;
 
         Debug.Log("Настройка завершена!");
-        // Здесь можно начать игру или выполнить другие действия
+
+        StreamerData streamerData;
+        WatcherData watcherData;
+        CreateCharacter(out streamerData, out watcherData);
     }
 
 }

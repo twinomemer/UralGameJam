@@ -13,4 +13,10 @@ public class WatcherData : MonoBehaviour
     public int ArmorType = 2;
     public int DamageType = 2;
 
+    public WatcherData(float Health, float Armor, float Damage)
+    {
+        this.Health = Health;
+        this.Armor = Armor;
+        this.Damage = Damage;
+    }
 }
