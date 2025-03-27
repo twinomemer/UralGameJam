@@ -111,7 +111,7 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            if (param.value > 0 && usedPointsFirstPlayer < pointsFirstPlayer)
+            if (param.value > 0 && usedPointsSecondPlayer < pointsSecondPlayer)
             {
                 if (param.name == "Health")
                 {
