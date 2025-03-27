@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
@@ -41,6 +42,9 @@ public class InputManager : MonoBehaviour
 
     public Parameter[] parametersFirstPlayer;
     public Parameter[] parametersSecondPlayer;
+    
+    public event UnityAction BuildingEnded;
+    
     private void Start()
     {
       
@@ -383,6 +387,7 @@ public class InputManager : MonoBehaviour
         CreateCharacter(out streamerData, out watcherData);
         streamer.Initialize(streamerData);
         watcher.Initialize(watcherData);
+        BuildingEnded?.Invoke();
         canvas.SetActive(false);
     }
 

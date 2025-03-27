@@ -128,10 +128,6 @@ public class QTESystem : MonoBehaviour
                     CompleteQTE();
                 }
             }
-            else
-            {
-                FailQTE();
-            }
         }
     }
 

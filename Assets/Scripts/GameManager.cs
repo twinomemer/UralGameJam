@@ -12,13 +12,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Watcher watcher;
     [SerializeField] private QTESystem qte;
     [SerializeField] private MiniGameColor mgc;
-    [SerializeField] private SpellLibraryPlayer1 spellLibraryPlayer1;
-    [SerializeField] private SpellLibraryPlayer2 spellLibraryPlayer2;
+    [SerializeField] private InputManager inputManager;
     
     private bool isAnybodyDead = false;
     void Start()
     {
-        StartBattle();
+        inputManager.BuildingEnded += StartBattle;
     }
     
     void Update()
