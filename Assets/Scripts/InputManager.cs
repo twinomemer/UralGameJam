@@ -98,7 +98,7 @@ public class InputManager : MonoBehaviour
             {
                 if (param.name == "Health")
                 {
-                        param.value += 10;
+                        param.value += 20;
                         usedPointsFirstPlayer++;
                         UpdateValueText(param);
                 }
@@ -123,7 +123,7 @@ public class InputManager : MonoBehaviour
             {
                 if (param.name == "Health")
                 {
-                    param.value += 10;
+                    param.value += 20;
                     usedPointsSecondPlayer++;
                     UpdateValueText(param);
                 }
@@ -167,9 +167,9 @@ public class InputManager : MonoBehaviour
             {
                 if(param.name == "Health")
                 {
-                    if(param.value > 50)
+                    if(param.value > 100)
                     {
-                        param.value -= 10;
+                        param.value -= 20;
                         usedPointsFirstPlayer--;
                         UpdateValueText(param);
                     }
@@ -203,7 +203,7 @@ public class InputManager : MonoBehaviour
                 {
                     if (param.value > 50)
                     {
-                        param.value -= 10;
+                        param.value -= 20;
                         usedPointsSecondPlayer--;
                         UpdateValueText(param);
                     }
