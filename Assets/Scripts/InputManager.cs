@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 { 
+    [SerializeField] private Streamer streamer;
+    [SerializeField] private Watcher watcher;
+    
     public Button readyFirst;
     public Button readySecond;
     public int pointsFirstPlayer = 10;
@@ -22,13 +25,13 @@ public class InputManager : MonoBehaviour
     [System.Serializable]
     public class Parameter
     {
-        public string name; // Название параметра
-        public int value;   // Текущее значение
-        public int modificator; //модификатор
-        public TMP_Text valueText; // Текстовое поле для отображения значения
-        public TMP_Text typeText; // Текстовое поле для отображения модификатора
-        public Button addButton; // Кнопка "+"
-        public Button subtractButton; // Кнопка "-"
+        public string name; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        public int value;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        public int modificator; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        public TMP_Text valueText; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        public TMP_Text typeText; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        public Button addButton; // пїЅпїЅпїЅпїЅпїЅпїЅ "+"
+        public Button subtractButton; // пїЅпїЅпїЅпїЅпїЅпїЅ "-"
         public Button Rock;
         public Button Scissors;
         public Button Page;
@@ -42,14 +45,14 @@ public class InputManager : MonoBehaviour
 
         foreach (var param in parametersFirstPlayer)
         {
-            // Назначаем обработчики кнопок
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             param.addButton.onClick.AddListener(() => AddPoint(param));
             param.subtractButton.onClick.AddListener(() => SubtractPoint(param));
             param.Rock.onClick.AddListener(() => AddPointTypeRock(param));
             param.Page.onClick.AddListener(() => AddPointTypePage(param));
             param.Scissors.onClick.AddListener(() => AddPointTypeScissors(param));
 
-            // Обновляем текстовое поле
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             UpdateValueText(param);
         }
 
@@ -63,17 +66,17 @@ public class InputManager : MonoBehaviour
             UpdateValueText(param);
         }
 
-        // Настройка кнопок и текстовых полей для второго игрока
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         foreach (var param in parametersSecondPlayer)
         {
-            param.addButton.interactable = false; // Блокируем кнопки второго игрока
+            param.addButton.interactable = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             param.subtractButton.interactable = false;
             param.Rock.interactable = false;
             param.Page.interactable = false;
             param.Scissors.interactable = false;
             UpdateValueText(param);
         }
-        // Настройка кнопок "Готов"
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅ"
         readyFirst.onClick.AddListener(() => SwitchToSecondPlayer());
         readySecond.onClick.AddListener(() => FinishSetup());
 
@@ -254,7 +257,7 @@ public class InputManager : MonoBehaviour
         {
             return;
         }
-        // Блокируем кнопки первого игрока
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         foreach (var param in parametersFirstPlayer)
         {
             param.addButton.interactable = false;
@@ -264,7 +267,7 @@ public class InputManager : MonoBehaviour
             param.Scissors.interactable = false;
         }
 
-        // Разблокируем кнопки второго игрока
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         foreach (var param in parametersSecondPlayer)
         {
             param.addButton.interactable = true;
@@ -274,10 +277,10 @@ public class InputManager : MonoBehaviour
             param.Scissors.interactable = true;
         }
 
-        // Переключаем флаг на второго игрока
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         isFirstPlayer = false;
 
-        // Разблокируем кнопку "Готов" второго игрока
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         readyFirst.interactable = false;
         readySecond.interactable = true;
     }
@@ -340,8 +343,8 @@ public class InputManager : MonoBehaviour
         firstPlayerData = new StreamerData(healthFirst, armorFirst, damageFirst, healthModific1, armorModific1, damageModific1);
         secondPlayerData = new WatcherData(healthSecond, armorSecond, damageSecond, healthModific2, armorModific2, damageModific2);
 
-        Debug.Log("Данные первого игрока: Health=" + healthFirst + ", Armor=" + armorFirst + ", Damage=" + damageFirst);
-        Debug.Log("Данные второго игрока: Health=" + healthSecond + ", Armor=" + armorSecond + ", Damage=" + damageSecond);
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: Health=" + healthFirst + ", Armor=" + armorFirst + ", Damage=" + damageFirst);
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: Health=" + healthSecond + ", Armor=" + armorSecond + ", Damage=" + damageSecond);
     }
 
     private void FinishSetup()
@@ -350,7 +353,7 @@ public class InputManager : MonoBehaviour
         {
             return;
         }
-        // Блокируем все кнопки после завершения настройки
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         foreach (var param in parametersFirstPlayer)
         {
             param.addButton.interactable = false;
@@ -372,11 +375,13 @@ public class InputManager : MonoBehaviour
 
         readySecond.interactable = false;
 
-        Debug.Log("Настройка завершена!");
+        Debug.Log("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
 
         StreamerData streamerData;
         WatcherData watcherData;
         CreateCharacter(out streamerData, out watcherData);
+        streamer.Initialize(streamerData);
+        watcher.Initialize(watcherData);
     }
 
 }

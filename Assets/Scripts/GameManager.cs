@@ -10,8 +10,6 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private Streamer streamer;
     [SerializeField] private Watcher watcher;
-    [SerializeField] private StreamerData streamerData;
-    [SerializeField] private WatcherData watcherData;
     [SerializeField] private QTESystem qte;
     [SerializeField] private MiniGameColor mgc;
     [SerializeField] private SpellLibraryPlayer1 spellLibraryPlayer1;
@@ -30,10 +28,8 @@ public class GameManager : MonoBehaviour
 
     public void StartBattle()
     {
-        streamer.Initialize(streamerData);
         streamer.OnDead += KillSomeone;
         
-        watcher.Initialize(watcherData);
         watcher.OnDead += KillSomeone;
         StartCoroutine(Fighting());
         

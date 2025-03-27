@@ -11,7 +11,6 @@ public class SpellLibraryPlayer2 : MonoBehaviour
 
     private float startArmor;
     private float boostedArmor = 100f;
-    private bool isBoosted = false;
     void Start()
     {
 
@@ -34,14 +33,12 @@ public class SpellLibraryPlayer2 : MonoBehaviour
     {
         startArmor = target.armor;
         
-        isBoosted = true;
         target.armor = boostedArmor;
         Debug.Log($"Броня усилена до: {target.armor}");
         
         yield return new WaitForSeconds(duration);
         
         target.armor = startArmor;
-        isBoosted = false;
         Debug.Log($"Броня вернулась к базовому значению: {target.armor}");
     }
 
