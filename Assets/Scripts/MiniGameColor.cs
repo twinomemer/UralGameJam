@@ -1,14 +1,22 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class MiniGameColor : MonoBehaviour
 {
+    [SerializeField] private SpellLibraryPlayer1 spellLibraryPlayer1;
+    [SerializeField] private SpellLibraryPlayer2 spellLibraryPlayer2;
+    [SerializeField] private Streamer streamer;
+    [SerializeField] private Watcher watcher;
+    [SerializeField] private KeyCode[] triggerButtons;
     public Image rectangle;
     public GameObject WimMiniGameColor;
     public Button[] buttons = new Button[3];
+    public int skillNumber;
 
     private Color[] colors = new Color[]
     {
@@ -31,10 +39,53 @@ public class MiniGameColor : MonoBehaviour
 
     public event UnityAction colorGuessed;
     
+    private void SpellCheck()
+    {
+        switch (skillNumber)
+        {
+            case 1:
+                spellLibraryPlayer1.Fireball(watcher);
+                break;
+            case 2:
+                spellLibraryPlayer1.ChangeDamageType(streamer);
+                break;
+            case 3:
+                spellLibraryPlayer1.IncreaseCoef(streamer);
+                break;
+            case 4:
+                spellLibraryPlayer2.Heal(watcher);
+                break;
+            case 5:
+                spellLibraryPlayer2.StartBoost(watcher);
+                break;
+            case 6:
+                spellLibraryPlayer2.DecreaseCoef(streamer);
+                break;
+        }
+    }
+    
     void Start()
     {
         // Инициализация игры при старте
         RestartGame();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(triggerButtons[0]))
+        {
+            buttons[0].onClick.Invoke();
+        }
+        else if (Input.GetKeyDown(triggerButtons[1]))
+        {
+            // Имитируем нажатие кнопки
+            buttons[1].onClick.Invoke();
+        }
+        else if (Input.GetKeyDown(triggerButtons[2]))
+        {
+            // Имитируем нажатие кнопки
+            buttons[2].onClick.Invoke();
+        }
     }
 
     // Метод для перезапуска игры
@@ -132,6 +183,7 @@ public class MiniGameColor : MonoBehaviour
             // Проверяем правильность по цвету текста
             if (clickedButtonText.color == rectangle.color)
             {
+                colorGuessed += SpellCheck;
                 colorGuessed?.Invoke();
                 Debug.Log("Правильно! (по цвету текста)");
             }
@@ -145,6 +197,7 @@ public class MiniGameColor : MonoBehaviour
             // Проверяем правильность по названию цвета
             if (clickedButtonText.text == GetColorName(rectangle.color))
             {
+                colorGuessed += SpellCheck;
                 colorGuessed?.Invoke();
                 Debug.Log("Правильно! (по названию цвета)");
             }

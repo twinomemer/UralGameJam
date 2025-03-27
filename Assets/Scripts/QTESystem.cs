@@ -10,6 +10,11 @@ using Random = UnityEngine.Random;
 public class QTESystem : MonoBehaviour
 {
     [SerializeField] public float qteDuration = 3f;
+    [SerializeField] private SpellLibraryPlayer1 spellLibraryPlayer1;
+    [SerializeField] private SpellLibraryPlayer2 spellLibraryPlayer2;
+    [SerializeField] private Streamer streamer;
+    [SerializeField] private Watcher watcher;
+    
     public KeyCode[] possibleKeys = { KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.W }; // ��������� �������
     public TextMeshProUGUI qteText; // ����� ��� ����������� QTE
     public TextMeshProUGUI progressText; // ����� ��� ����������� ���������
@@ -22,9 +27,35 @@ public class QTESystem : MonoBehaviour
     private float qteTimer;
     private float messageTimer;
     private bool isMessageDisplayed = false;
+    public int skillNumber;
 
     public event UnityAction QTECompleted;
 
+    private void SpellCheck()
+    {
+        switch (skillNumber)
+        {
+            case 1:
+                spellLibraryPlayer1.Fireball(watcher);
+                break;
+            case 2:
+                spellLibraryPlayer1.ChangeDamageType(streamer);
+                break;
+            case 3:
+                spellLibraryPlayer1.IncreaseCoef(streamer);
+                break;
+            case 4:
+                spellLibraryPlayer2.Heal(watcher);
+                break;
+            case 5:
+                spellLibraryPlayer2.StartBoost(watcher);
+                break;
+            case 6:
+                spellLibraryPlayer2.DecreaseCoef(streamer);
+                break;
+        }
+    }
+    
     void Start()
     {
         StartQTE();
@@ -112,6 +143,7 @@ public class QTESystem : MonoBehaviour
 
     private void CompleteQTE()
     {
+        QTECompleted += SpellCheck;
         qteText.text = "Успех!";
         progressText.text = "";
         isQTEActive = false;

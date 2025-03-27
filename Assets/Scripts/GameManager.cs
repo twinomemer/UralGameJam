@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,13 +14,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private WatcherData watcherData;
     [SerializeField] private QTESystem qte;
     [SerializeField] private MiniGameColor mgc;
-    [SerializeField] private SpellLibrary spellLibrary;
+    [SerializeField] private SpellLibraryPlayer1 spellLibraryPlayer1;
+    [SerializeField] private SpellLibraryPlayer2 spellLibraryPlayer2;
     
     private bool isAnybodyDead = false;
     void Start()
     {
-        //mgc.colorGuessed += ;
-        qte.QTECompleted += () => watcher.TakeDamage(spellDamage);
         StartBattle();
     }
     

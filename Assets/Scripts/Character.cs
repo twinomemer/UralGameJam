@@ -6,9 +6,8 @@ public abstract class Character : MonoBehaviour
 {
     //Параметры бойца.
     protected float health;
-    protected float armor;
     protected float damage;
-    protected List<int> spells = new List<int>();
+    public float armor;
     
     //Типы параметров. 1 - камень, 2 - ножницы, 3 - бумага. Остальное - психические отклонения.
     public int healthType;
