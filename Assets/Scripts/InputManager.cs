@@ -270,6 +270,8 @@ public class InputManager : MonoBehaviour
             param.Rock.interactable = false;
             param.Page.interactable = false;
             param.Scissors.interactable = false;
+            param.valueText.text = "***";
+            param.typeText.text = "**";
         }
 
         // ������������ ������ ������� ������
