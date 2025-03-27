@@ -7,11 +7,7 @@ public class Streamer : Character
 {
     [SerializeField] private Image image;
     
-    [SerializeField] private Character enemy;
-    
     [SerializeField] private HealthBar _healthBar;
-
-    [SerializeField] private SpellLibraryPlayer1 spellLibraryPlayer1;
     
     public void Initialize(StreamerData streamerData)
     {
@@ -27,7 +23,5 @@ public class Streamer : Character
         
         this.OnDamaged += _healthBar.DecreaseValue;
         this.OnDead += _healthBar.Hide;
-
-
     }
 }

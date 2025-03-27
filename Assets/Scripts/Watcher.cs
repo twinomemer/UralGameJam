@@ -5,8 +5,6 @@ public class Watcher : Character
 {
     [SerializeField] private Image image;
     
-    [SerializeField] private Character enemy;
-    
     [SerializeField] private HealthBar _healthBar;
 
     public void Initialize(WatcherData watcherData)
