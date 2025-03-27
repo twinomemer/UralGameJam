@@ -18,31 +18,35 @@ public class InputManager : MonoBehaviour
     private int armor;
     private int damage;
     private bool isFirstPlayer = true;
+    private Color originalColor;
     [System.Serializable]
     public class Parameter
     {
         public string name; // Название параметра
         public int value;   // Текущее значение
+        public int modificator; //модификатор
         public TMP_Text valueText; // Текстовое поле для отображения значения
+        public TMP_Text typeText; // Текстовое поле для отображения модификатора
         public Button addButton; // Кнопка "+"
         public Button subtractButton; // Кнопка "-"
-        public Button HealthType;
-        public Button ArmorType;
-        public Button DamageType;
+        public Button Rock;
+        public Button Page;
+        public Button Scissors;
     }
 
     public Parameter[] parametersFirstPlayer;
     public Parameter[] parametersSecondPlayer;
     private void Start()
     {
+
         foreach (var param in parametersFirstPlayer)
         {
             // Назначаем обработчики кнопок
             param.addButton.onClick.AddListener(() => AddPoint(param));
             param.subtractButton.onClick.AddListener(() => SubtractPoint(param));
-           // param.HealthType.onClick.AddListener(() => AddPointType(param));
-            //param.HealthType.onClick.AddListener(() => AddPointType(param));
-           // param.HealthType.onClick.AddListener(() => AddPointType(param));
+            param.Rock.onClick.AddListener(() => AddPointTypeRock(param));
+            param.Page.onClick.AddListener(() => AddPointTypePage(param));
+            param.Scissors.onClick.AddListener(() => AddPointTypeScissors(param));
 
             // Обновляем текстовое поле
             UpdateValueText(param);
@@ -52,6 +56,9 @@ public class InputManager : MonoBehaviour
         {
             param.addButton.onClick.AddListener(() => AddPoint(param));
             param.subtractButton.onClick.AddListener(() => SubtractPoint(param));
+            param.Rock.onClick.AddListener(() => AddPointTypeRock(param));
+            param.Page.onClick.AddListener(() => AddPointTypePage(param));
+            param.Scissors.onClick.AddListener(() => AddPointTypeScissors(param));
             UpdateValueText(param);
         }
 
@@ -60,6 +67,9 @@ public class InputManager : MonoBehaviour
         {
             param.addButton.interactable = false; // Блокируем кнопки второго игрока
             param.subtractButton.interactable = false;
+            param.Rock.interactable = false;
+            param.Page.interactable = false;
+            param.Scissors.interactable = false;
             UpdateValueText(param);
         }
         // Настройка кнопок "Готов"
@@ -74,7 +84,7 @@ public class InputManager : MonoBehaviour
     {
         if (isFirstPlayer)
         {
-            if (usedPointsFirstPlayer < pointsFirstPlayer)
+            if (usedPointsFirstPlayer < pointsFirstPlayer && param.value <80)
             {
                 param.value += 10;
                 usedPointsFirstPlayer++;
@@ -83,7 +93,7 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            if (usedPointsSecondPlayer < pointsSecondPlayer)
+            if (usedPointsSecondPlayer < pointsSecondPlayer && param.value < 80)
             {
                 param.value += 10;
                 usedPointsSecondPlayer++;
@@ -91,6 +101,23 @@ public class InputManager : MonoBehaviour
             }
         }
     }
+
+    private void AddPointTypeRock(Parameter param)
+    {
+        param.modificator = 1;
+        UpdateValueText(param);
+    }
+    private void AddPointTypePage(Parameter param)
+    {
+        param.modificator = 2;
+        UpdateValueText(param);
+    }
+    private void AddPointTypeScissors(Parameter param)
+    {
+        param.modificator = 3;
+        UpdateValueText(param);
+    }
+
     private void SubtractPoint(Parameter param)
     {
         if (isFirstPlayer)
@@ -167,6 +194,10 @@ public class InputManager : MonoBehaviour
         {
             param.valueText.text = param.value.ToString();
         }
+        if (param.typeText != null)
+        {
+            param.typeText.text = param.modificator.ToString();
+        }
         if (isFirstPlayer)
         {
             if (firstPlayerPointsText != null)
@@ -191,6 +222,9 @@ public class InputManager : MonoBehaviour
         {
             param.addButton.interactable = false;
             param.subtractButton.interactable = false;
+            param.Rock.interactable = false;
+            param.Page.interactable = false;
+            param.Scissors.interactable = false;
         }
 
         // Разблокируем кнопки второго игрока
@@ -198,6 +232,9 @@ public class InputManager : MonoBehaviour
         {
             param.addButton.interactable = true;
             param.subtractButton.interactable = true;
+            param.Rock.interactable = true;
+            param.Page.interactable = true;
+            param.Scissors.interactable = true;
         }
 
         // Переключаем флаг на второго игрока
@@ -212,33 +249,59 @@ public class InputManager : MonoBehaviour
         float healthFirst = 0f;
         float armorFirst = 0f;
         float damageFirst = 0f;
+        int healthModific1 = 0;
+        int armorModific1 = 0;
+        int damageModific1 = 0;
 
         foreach (var param in parametersFirstPlayer)
         {
             if (param.name == "Health")
+            {
                 healthFirst = param.value;
+                healthModific1 = param.modificator;
+            }
             else if (param.name == "Armor")
+            {
                 armorFirst = param.value;
+                armorModific1 = param.modificator;
+            }
             else if (param.name == "Damage")
+            {
                 damageFirst = param.value;
+                damageModific1 = param.modificator;
+            }
+                
         }
 
         float healthSecond = 0f;
         float armorSecond = 0f;
         float damageSecond = 0f;
+        int healthModific2 = 0;
+        int armorModific2 = 0;
+        int damageModific2 = 0;
 
         foreach (var param in parametersSecondPlayer)
         {
             if (param.name == "Health")
+            {
                 healthSecond = param.value;
+                healthModific2 = param.modificator;
+            }
             else if (param.name == "Armor")
+            {
                 armorSecond = param.value;
+                armorModific2 = param.modificator;
+            }
             else if (param.name == "Damage")
+            {
                 damageSecond = param.value;
+                damageModific2 = param.modificator;
+            }
+               
         }
 
-        firstPlayerData = new StreamerData(healthFirst, armorFirst, damageFirst);
-        secondPlayerData = new WatcherData(healthSecond, armorSecond, damageSecond);
+        firstPlayerData = new StreamerData(healthFirst, armorFirst, damageFirst, healthModific1, armorModific1, damageModific1);
+        secondPlayerData = new WatcherData(healthSecond, armorSecond, damageSecond, healthModific2, armorModific2, damageModific2);
 
         Debug.Log("Данные первого игрока: Health=" + healthFirst + ", Armor=" + armorFirst + ", Damage=" + damageFirst);
         Debug.Log("Данные второго игрока: Health=" + healthSecond + ", Armor=" + armorSecond + ", Damage=" + damageSecond);
@@ -251,12 +314,19 @@ public class InputManager : MonoBehaviour
         {
             param.addButton.interactable = false;
             param.subtractButton.interactable = false;
+            param.Rock.interactable = false;
+            param.Page.interactable = false;
+            param.Scissors.interactable = false;
+
         }
 
         foreach (var param in parametersSecondPlayer)
         {
             param.addButton.interactable = false;
             param.subtractButton.interactable = false;
+            param.Rock.interactable = false;
+            param.Page.interactable = false;
+            param.Scissors.interactable = false;
         }
 
         readySecond.interactable = false;
