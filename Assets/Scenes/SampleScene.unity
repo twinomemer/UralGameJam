@@ -149,8 +149,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1742444896}
-  - {fileID: 2076460811}
   - {fileID: 632372808}
+  - {fileID: 2076460811}
   m_Father: {fileID: 1794577588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -1680,8 +1680,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1473355030}
-  - {fileID: 930851150}
   - {fileID: 1889825219}
+  - {fileID: 930851150}
   m_Father: {fileID: 1794577588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -1771,7 +1771,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -90
+  m_Spacing: -70
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -2228,8 +2228,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 952374488}
-  - {fileID: 1095101082}
   - {fileID: 881767568}
+  - {fileID: 1095101082}
   m_Father: {fileID: 1794577588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -3936,8 +3936,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 33756456}
-  - {fileID: 65712854}
   - {fileID: 1082837039}
+  - {fileID: 65712854}
   m_Father: {fileID: 1341128052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -4027,7 +4027,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -90
+  m_Spacing: -70
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -4790,7 +4790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -4.77, y: 2.3}
+  m_AnchoredPosition: {x: -4.99, y: 2.3}
   m_SizeDelta: {x: 239.28, y: 230.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &733927435
@@ -5186,8 +5186,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 899715286}
-  - {fileID: 336421542}
   - {fileID: 793068118}
+  - {fileID: 336421542}
   m_Father: {fileID: 1341128052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -6587,8 +6587,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 345011358}
-  - {fileID: 1252059547}
   - {fileID: 1925798466}
+  - {fileID: 1252059547}
   m_Father: {fileID: 1341128052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
@@ -7842,7 +7842,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -90
+  m_Spacing: -70
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -8415,7 +8415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -5.67, y: 2.28}
+  m_AnchoredPosition: {x: -5.79, y: 2.18}
   m_SizeDelta: {x: 239.28, y: 230.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1276914204
@@ -8511,7 +8511,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -90
+  m_Spacing: -70
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -9366,7 +9366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -7.02, y: 2.2084}
+  m_AnchoredPosition: {x: -6.9, y: 2.2084}
   m_SizeDelta: {x: 231.2542, y: 239.2682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1456018412
@@ -10248,7 +10248,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -90
+  m_Spacing: -70
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -11369,7 +11369,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -90
+  m_Spacing: -70
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -12217,8 +12217,8 @@ MonoBehaviour:
     addButton: {fileID: 967914005}
     subtractButton: {fileID: 1331492693}
     Rock: {fileID: 952374489}
-    Page: {fileID: 1095101083}
     Scissors: {fileID: 881767569}
+    Page: {fileID: 1095101083}
   - name: Armor
     value: 10
     modificator: 1
@@ -12227,8 +12227,8 @@ MonoBehaviour:
     addButton: {fileID: 453970400}
     subtractButton: {fileID: 1092718901}
     Rock: {fileID: 1742444897}
-    Page: {fileID: 2076460812}
     Scissors: {fileID: 632372809}
+    Page: {fileID: 2076460812}
   - name: Damage
     value: 20
     modificator: 1
@@ -12237,8 +12237,8 @@ MonoBehaviour:
     addButton: {fileID: 860760459}
     subtractButton: {fileID: 679934849}
     Rock: {fileID: 1473355031}
-    Page: {fileID: 930851151}
     Scissors: {fileID: 1889825220}
+    Page: {fileID: 930851151}
   parametersSecondPlayer:
   - name: Health
     value: 50
@@ -12248,8 +12248,8 @@ MonoBehaviour:
     addButton: {fileID: 2141747301}
     subtractButton: {fileID: 314969007}
     Rock: {fileID: 899715287}
-    Page: {fileID: 336421543}
     Scissors: {fileID: 793068119}
+    Page: {fileID: 336421543}
   - name: Armor
     value: 10
     modificator: 1
@@ -12258,8 +12258,8 @@ MonoBehaviour:
     addButton: {fileID: 1349698362}
     subtractButton: {fileID: 634636212}
     Rock: {fileID: 33756457}
-    Page: {fileID: 65712855}
     Scissors: {fileID: 1082837040}
+    Page: {fileID: 65712855}
   - name: Damage
     value: 20
     modificator: 1
@@ -12268,8 +12268,8 @@ MonoBehaviour:
     addButton: {fileID: 1582569207}
     subtractButton: {fileID: 1304030906}
     Rock: {fileID: 345011359}
-    Page: {fileID: 1252059548}
     Scissors: {fileID: 1925798467}
+    Page: {fileID: 1252059548}
 --- !u!1 &1976323559
 GameObject:
   m_ObjectHideFlags: 0

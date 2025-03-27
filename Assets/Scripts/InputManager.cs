@@ -30,8 +30,9 @@ public class InputManager : MonoBehaviour
         public Button addButton; // Кнопка "+"
         public Button subtractButton; // Кнопка "-"
         public Button Rock;
-        public Button Page;
         public Button Scissors;
+        public Button Page;
+        
     }
 
     public Parameter[] parametersFirstPlayer;
@@ -141,12 +142,12 @@ public class InputManager : MonoBehaviour
     }
     private void AddPointTypePage(Parameter param)
     {
-        param.modificator = 2;
+        param.modificator = 3;
         UpdateValueText(param);
     }
     private void AddPointTypeScissors(Parameter param)
     {
-        param.modificator = 3;
+        param.modificator = 2;
         UpdateValueText(param);
     }
 
