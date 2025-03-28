@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
         if (isAnybodyDead)
         {
             //nado vivod kto podebil
-            
-            inputManager.gameObject.SetActive(true);
+            inputManager.SetBlock(1, 2);
+            inputManager.canvas.SetActive(true);
         }
     }
 

@@ -26,11 +26,8 @@ public class InputManager : MonoBehaviour
     private Color originalColor;
 
     private bool statBlock = false;
-    private int changesP1 = 3;
-    private int changesP2 = 3;
-    private bool RockBlock;
-    private bool PaperBlock;
-    private bool ScissorsBlock;
+    //private int changesP1 = 3;
+    //private int changesP2 = 3;
     [System.Serializable]
     public class Parameter
     {
@@ -51,10 +48,11 @@ public class InputManager : MonoBehaviour
     public Parameter[] parametersSecondPlayer;
     
     public event UnityAction BuildingEnded;
+    //public event UnityAction StatChanged;
     
-    private void Start()
+    private void OnEnable()
     {
-
+        Debug.Log("vkl");
         if (statBlock)
         {
             pointsFirstPlayer = 0;
@@ -67,7 +65,7 @@ public class InputManager : MonoBehaviour
             if (!statBlock)
             {
                 param.addButton.onClick.AddListener(() => AddPoint(param));
-                param.subtractButton.onClick.AddListener(() => SubtractPoint(param)); 
+                param.subtractButton.onClick.AddListener(() => SubtractPoint(param));
             }
             else
             {
@@ -76,15 +74,22 @@ public class InputManager : MonoBehaviour
             }
             
             param.Rock.onClick.AddListener(() => AddPointTypeRock(param));
-            param.Rock.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 1));
             
             param.Page.onClick.AddListener(() => AddPointTypePage(param));
-            param.Page.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 3));
             
             param.Scissors.onClick.AddListener(() => AddPointTypeScissors(param));
-            param.Scissors.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 2));
 
             // ��������� ��������� ����
+            UpdateValueText(param);
+        }
+        
+        foreach (var param in parametersFirstPlayer)
+        {
+            param.addButton.interactable = true;
+            param.subtractButton.interactable = true;
+            param.Rock.interactable = true;
+            param.Page.interactable = true;
+            param.Scissors.interactable = true;
             UpdateValueText(param);
         }
 
@@ -102,13 +107,10 @@ public class InputManager : MonoBehaviour
             }
             
             param.Rock.onClick.AddListener(() => AddPointTypeRock(param));
-            param.Rock.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 1));
             
             param.Page.onClick.AddListener(() => AddPointTypePage(param));
-            param.Page.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 3));
             
             param.Scissors.onClick.AddListener(() => AddPointTypeScissors(param));
-            param.Scissors.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 2));
             UpdateValueText(param);
         }
 
@@ -120,7 +122,8 @@ public class InputManager : MonoBehaviour
             param.Rock.interactable = false;
             param.Page.interactable = false;
             param.Scissors.interactable = false;
-            UpdateValueText(param);
+            param.valueText.text = "***";
+            param.typeText.text = "**";
         }
         // ��������� ������ "�����"
         readyFirst.onClick.AddListener(() => SwitchToSecondPlayer());
@@ -131,7 +134,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (changesP1 == 0)
+        /*if (changesP1 == 0)
         {
             foreach (var param in parametersFirstPlayer)
             {
@@ -149,7 +152,7 @@ public class InputManager : MonoBehaviour
                 param.Page.onClick.RemoveAllListeners();
                 param.Scissors.onClick.RemoveAllListeners();
             }
-        }
+        }*/
     }
 
     private void AddPoint(Parameter param)
@@ -345,6 +348,7 @@ public class InputManager : MonoBehaviour
             param.Rock.interactable = true;
             param.Page.interactable = true;
             param.Scissors.interactable = true;
+            UpdateValueText(param);
         }
 
         // ����������� ���� �� ������� ������
@@ -459,24 +463,17 @@ public class InputManager : MonoBehaviour
     //метод, ограничивающий количество вносимых изменений в билд. n - кол-во разрешённых изменений
     public void SetBlock(int n1, int n2)
     {
-        changesP1 = n1;
-        changesP2 = n2;
+        //changesP1 = n1;
+        //changesP2 = n2;
         statBlock = true;
     }
 
-    public void DecreaseChanges(bool isFirstPlayer, int button)
+    /*private void DecreaseChanges(bool firstPlayer)
     {
-        if ((button == 1 && !RockBlock) || (button == 2 && !ScissorsBlock) || (button == 3 && !PaperBlock))
-        {
-            if (isFirstPlayer) changesP1 -= 1;
-            else changesP2 -= 1;
+        if (firstPlayer) changesP1 -= 1;
+        else changesP2 -= 1;
 
-            if (changesP1 < 0) changesP1 = 0;
-            if (changesP2 < 0) changesP2 = 0;
-        }
-
-        if (button == 1 && !RockBlock) RockBlock = true;
-        if (button == 2 && !ScissorsBlock) ScissorsBlock = true;
-        if (button == 3 && !PaperBlock) PaperBlock = true;
-    }
+        if (changesP1 < 0) changesP1 = 0;
+        if (changesP2 < 0) changesP2 = 0;
+    }*/
 }
