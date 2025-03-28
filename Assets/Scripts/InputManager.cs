@@ -24,6 +24,13 @@ public class InputManager : MonoBehaviour
     private int damage;
     private bool isFirstPlayer = true;
     private Color originalColor;
+
+    private bool statBlock = false;
+    private int changesP1 = 3;
+    private int changesP2 = 3;
+    private bool RockBlock;
+    private bool PaperBlock;
+    private bool ScissorsBlock;
     [System.Serializable]
     public class Parameter
     {
@@ -47,15 +54,35 @@ public class InputManager : MonoBehaviour
     
     private void Start()
     {
+
+        if (statBlock)
+        {
+            pointsFirstPlayer = 0;
+            pointsSecondPlayer = 0;
+        }
       
         foreach (var param in parametersFirstPlayer)
         {
             // ��������� ����������� ������
-            param.addButton.onClick.AddListener(() => AddPoint(param));
-            param.subtractButton.onClick.AddListener(() => SubtractPoint(param));
+            if (!statBlock)
+            {
+                param.addButton.onClick.AddListener(() => AddPoint(param));
+                param.subtractButton.onClick.AddListener(() => SubtractPoint(param)); 
+            }
+            else
+            {
+                param.addButton.onClick.RemoveAllListeners();
+                param.subtractButton.onClick.RemoveAllListeners();
+            }
+            
             param.Rock.onClick.AddListener(() => AddPointTypeRock(param));
+            param.Rock.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 1));
+            
             param.Page.onClick.AddListener(() => AddPointTypePage(param));
+            param.Page.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 3));
+            
             param.Scissors.onClick.AddListener(() => AddPointTypeScissors(param));
+            param.Scissors.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 2));
 
             // ��������� ��������� ����
             UpdateValueText(param);
@@ -63,11 +90,25 @@ public class InputManager : MonoBehaviour
 
         foreach (var param in parametersSecondPlayer)
         {
-            param.addButton.onClick.AddListener(() => AddPoint(param));
-            param.subtractButton.onClick.AddListener(() => SubtractPoint(param));
+            if (!statBlock)
+            {
+                param.addButton.onClick.AddListener(() => AddPoint(param));
+                param.subtractButton.onClick.AddListener(() => SubtractPoint(param));
+            }
+            else
+            {
+                param.addButton.onClick.RemoveAllListeners();
+                param.subtractButton.onClick.RemoveAllListeners();
+            }
+            
             param.Rock.onClick.AddListener(() => AddPointTypeRock(param));
+            param.Rock.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 1));
+            
             param.Page.onClick.AddListener(() => AddPointTypePage(param));
+            param.Page.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 3));
+            
             param.Scissors.onClick.AddListener(() => AddPointTypeScissors(param));
+            param.Scissors.onClick.AddListener(() => DecreaseChanges(isFirstPlayer, 2));
             UpdateValueText(param);
         }
 
@@ -85,8 +126,30 @@ public class InputManager : MonoBehaviour
         readyFirst.onClick.AddListener(() => SwitchToSecondPlayer());
         readySecond.onClick.AddListener(() => FinishSetup());
 
-
         readySecond.interactable = false;
+    }
+
+    private void Update()
+    {
+        if (changesP1 == 0)
+        {
+            foreach (var param in parametersFirstPlayer)
+            {
+                param.Rock.onClick.RemoveAllListeners();
+                param.Page.onClick.RemoveAllListeners();
+                param.Scissors.onClick.RemoveAllListeners();
+            }
+        }
+        
+        if (changesP2 == 0)
+        {
+            foreach (var param in parametersSecondPlayer)
+            {
+                param.Rock.onClick.RemoveAllListeners();
+                param.Page.onClick.RemoveAllListeners();
+                param.Scissors.onClick.RemoveAllListeners();
+            }
+        }
     }
 
     private void AddPoint(Parameter param)
@@ -98,7 +161,7 @@ public class InputManager : MonoBehaviour
             {
                 if (param.name == "Health")
                 {
-                        param.value += 20;
+                        param.value += 30;
                         usedPointsFirstPlayer++;
                         UpdateValueText(param);
                 }
@@ -123,7 +186,7 @@ public class InputManager : MonoBehaviour
             {
                 if (param.name == "Health")
                 {
-                    param.value += 20;
+                    param.value += 30;
                     usedPointsSecondPlayer++;
                     UpdateValueText(param);
                 }
@@ -169,7 +232,7 @@ public class InputManager : MonoBehaviour
                 {
                     if(param.value > 100)
                     {
-                        param.value -= 20;
+                        param.value -= 30;
                         usedPointsFirstPlayer--;
                         UpdateValueText(param);
                     }
@@ -203,7 +266,7 @@ public class InputManager : MonoBehaviour
                 {
                     if (param.value > 100)
                     {
-                        param.value -= 20;
+                        param.value -= 30;
                         usedPointsSecondPlayer--;
                         UpdateValueText(param);
                     }
@@ -393,4 +456,27 @@ public class InputManager : MonoBehaviour
         canvas.SetActive(false);
     }
 
+    //метод, ограничивающий количество вносимых изменений в билд. n - кол-во разрешённых изменений
+    public void SetBlock(int n1, int n2)
+    {
+        changesP1 = n1;
+        changesP2 = n2;
+        statBlock = true;
+    }
+
+    public void DecreaseChanges(bool isFirstPlayer, int button)
+    {
+        if ((button == 1 && !RockBlock) || (button == 2 && !ScissorsBlock) || (button == 3 && !PaperBlock))
+        {
+            if (isFirstPlayer) changesP1 -= 1;
+            else changesP2 -= 1;
+
+            if (changesP1 < 0) changesP1 = 0;
+            if (changesP2 < 0) changesP2 = 0;
+        }
+
+        if (button == 1 && !RockBlock) RockBlock = true;
+        if (button == 2 && !ScissorsBlock) ScissorsBlock = true;
+        if (button == 3 && !PaperBlock) PaperBlock = true;
+    }
 }

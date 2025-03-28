@@ -16,6 +16,8 @@ public abstract class Character : MonoBehaviour
     
     //Коэффициент, который отвечает за увеличение/снижение параметров при сопоставлении их типов.
     public float effCoeff = 0.2f;
+
+    public int WinCount = 0;
     
     public event UnityAction<float> OnDamaged;
     public event UnityAction OnDead;
@@ -51,5 +53,10 @@ public abstract class Character : MonoBehaviour
         {
             target.TakeDamage(damage * (1 - target.armor / 100));
         }
+    }
+
+    public void Win()
+    {
+        WinCount += 1;
     }
 }

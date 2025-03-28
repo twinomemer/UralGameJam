@@ -14396,6 +14396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpellLibrary
       objectReference: {fileID: 0}
+    - target: {fileID: 9130367577886138129, guid: 5b5a2bf209b250b4b8b41606b208e263, type: 3}
+      propertyPath: duration
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

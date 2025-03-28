@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputManager inputManager;
     
     private bool isAnybodyDead = false;
+    private Character RoundWinner;
     void Start()
     {
         inputManager.BuildingEnded += StartBattle;
@@ -22,20 +23,29 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
-        
+        if (isAnybodyDead)
+        {
+            //nado vivod kto podebil
+            
+            inputManager.gameObject.SetActive(true);
+        }
     }
 
     public void StartBattle()
     {
         streamer.OnDead += KillSomeone;
+        streamer.OnDead += watcher.Win;
+        streamer.OnDead += WatcherIsWinner;
         
         watcher.OnDead += KillSomeone;
+        watcher.OnDead += streamer.Win;
+        watcher.OnDead += StreamerIsWinner;
         StartCoroutine(Fighting());
         
         BlessingCompare();
     }
     
-    IEnumerator Fighting()
+    private IEnumerator Fighting()
     {
         // Пока событие не произошло, выполняем метод
         while (!isAnybodyDead)
@@ -70,5 +80,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("vse doma");
         }
+    }
+
+    private void StreamerIsWinner()
+    {
+        RoundWinner = streamer;
+    }
+    private void WatcherIsWinner()
+    {
+        RoundWinner = watcher;
     }
 }

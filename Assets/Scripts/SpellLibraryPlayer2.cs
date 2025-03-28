@@ -28,7 +28,7 @@ public class SpellLibraryPlayer2 : MonoBehaviour
         StartCoroutine(ArmorBoost(target));
     }
     
-    //изменение типа урона на следующий по порядку
+    //усиление брони до 100
     private IEnumerator ArmorBoost(Character target)
     {
         startArmor = target.armor;

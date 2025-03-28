@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="3579fbe4-75f4-4256-8053-be66befcbbbe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UralGameJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UralGameJam/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Character.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Character.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InputManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SpellLibraryPlayer1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SpellLibraryPlayer1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SpellLibraryPlayer2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SpellLibraryPlayer2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +110,7 @@
       <workItem from="1742636235685" duration="15283000" />
       <workItem from="1742720185777" duration="9018000" />
       <workItem from="1743060027578" duration="13529000" />
+      <workItem from="1743147868678" duration="10309000" />
     </task>
     <servers />
   </component>
