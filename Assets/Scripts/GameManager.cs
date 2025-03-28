@@ -1,5 +1,8 @@
 using System.Collections;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
@@ -13,33 +16,54 @@ public class GameManager : MonoBehaviour
     [SerializeField] private QTESystem qte;
     [SerializeField] private MiniGameColor mgc;
     [SerializeField] private InputManager inputManager;
+    [SerializeField] private GameObject backCanvas;
+    [SerializeField] private GameObject WinCanvas;
+    [SerializeField] private TextMeshProUGUI WinText;
     
     private bool isAnybodyDead = false;
     private Character RoundWinner;
     void Start()
     {
         inputManager.BuildingEnded += StartBattle;
+        
+        streamer.OnDamaged += streamer._healthBar.DecreaseValue;
+        streamer.OnDead += streamer._healthBar.Hide;
+        streamer.OnDead += KillSomeone;
+        streamer.OnDead += watcher.Win;
+        streamer.OnDead += WatcherIsWinner;
+        
+        watcher.OnDamaged += watcher._healthBar.DecreaseValue;
+        watcher.OnDead += watcher._healthBar.Hide;
+        watcher.OnDead += KillSomeone;
+        watcher.OnDead += streamer.Win;
+        watcher.OnDead += StreamerIsWinner;
     }
     
     void Update()
     {
         if (isAnybodyDead)
         {
-            //nado vivod kto podebil
-            inputManager.SetBlock(1, 2);
-            inputManager.canvas.SetActive(true);
+            WinCanvas.SetActive(true);
+            if (RoundWinner == streamer)
+            {
+                WinText.text = "Победа игрока 1";
+            }
+            if (RoundWinner == watcher)
+            {
+                WinText.text = "Победа игрока 2";
+            }
+            Invoke("Deb1", 3f);
+            //StartCoroutine(Deb());
+            //inputManager.SetBlock(1, 2);
+            //inputManager.canvas.SetActive(true);
         }
     }
 
     public void StartBattle()
     {
-        streamer.OnDead += KillSomeone;
-        streamer.OnDead += watcher.Win;
-        streamer.OnDead += WatcherIsWinner;
+        backCanvas.SetActive(true);
+        isAnybodyDead = false;
         
-        watcher.OnDead += KillSomeone;
-        watcher.OnDead += streamer.Win;
-        watcher.OnDead += StreamerIsWinner;
         StartCoroutine(Fighting());
         
         BlessingCompare();
@@ -61,6 +85,8 @@ public class GameManager : MonoBehaviour
     private void KillSomeone()
     {
         isAnybodyDead = true;
+        StopAllCoroutines();
+        backCanvas.SetActive(false);
     }
     
     private void BlessingCompare()
@@ -89,5 +115,16 @@ public class GameManager : MonoBehaviour
     private void WatcherIsWinner()
     {
         RoundWinner = watcher;
+    }
+
+    private IEnumerator Deb()
+    {
+        yield return new WaitForSeconds(4f);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    private void Deb1()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -49,7 +49,12 @@ public class InputManager : MonoBehaviour
     
     public event UnityAction BuildingEnded;
     //public event UnityAction StatChanged;
-    
+
+    private void Start()
+    {
+        
+    }
+
     private void OnEnable()
     {
         Debug.Log("vkl");
@@ -90,6 +95,7 @@ public class InputManager : MonoBehaviour
             param.Rock.interactable = true;
             param.Page.interactable = true;
             param.Scissors.interactable = true;
+            readyFirst.interactable = true;
             UpdateValueText(param);
         }
 
@@ -449,7 +455,7 @@ public class InputManager : MonoBehaviour
 
         readySecond.interactable = false;
 
-        Debug.Log("��������� ���������!");
+        Debug.Log("билдинг закончен!");
 
         StreamerData streamerData;
         WatcherData watcherData;

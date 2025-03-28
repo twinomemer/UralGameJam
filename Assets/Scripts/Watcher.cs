@@ -5,7 +5,7 @@ public class Watcher : Character
 {
     [SerializeField] private Image image;
     
-    [SerializeField] private HealthBar _healthBar;
+    [SerializeField] public HealthBar _healthBar;
 
     public void Initialize(WatcherData watcherData)
     {
@@ -16,10 +16,8 @@ public class Watcher : Character
         armorType = watcherData.ArmorType;
         damageType = watcherData.DamageType;
         
+        Debug.Log($"uron watcher {damage}");
         _healthBar.SetMaxValue(health);
         _healthBar.Show();
-        
-        this.OnDamaged += _healthBar.DecreaseValue;
-        this.OnDead += _healthBar.Hide;
     }
 }
